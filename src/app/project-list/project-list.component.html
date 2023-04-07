@@ -1,11 +1,15 @@
 <p>project-list works!</p>
-
 <div>
-    <div *ngFor="let project of projects">
-        <h2>{{ project.name }}</h2>
-        <p>{{ project.description }}</p>
-        <p>{{ project.language }}</p>
-        <p>{{ project.size }}</p>
-        <a [href]="project.html_url">Ver no GitHub</a>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pesquisar projetos" [(ngModel)]="searchQuery"
+                    (ngModelChange)="searchProjects()">
+            </div>
+            <app-card-project *ngFor="let project of projects" [project]="project"></app-card-project>
+
+            <button class="btn btn-secondary btn-block" (click)="toggleShowMore()"
+                *ngIf="allProjects.length > projects.length">{{ showMore ? 'Mostrar menos' : 'Mostrar mais' }}</button>
+        </div>
     </div>
 </div>
