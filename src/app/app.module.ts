@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CardProjectComponent } from './component/card-project/card-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProjectListComponent } from './project-list/project-list.component';
     BrowserModule,
     MatCardModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
