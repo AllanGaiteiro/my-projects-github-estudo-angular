@@ -22,8 +22,8 @@ export class ProjectListComponent implements OnInit {
 
     }).then(({ data }) => {
       // exibe os dados dos seus projetos do GitHub no console
-      this.allProjects = data;
-      this.projects = data.slice(0, 6);
+      this.allProjects = data.sort((a, b) => b['updated_at'] && a['updated_at'] && (b['updated_at'] > a['updated_at']) ? 1 : -1);
+      this.projects = this.allProjects.slice(0, 6);
       console.log(this.projects)
     }).catch(error => {
       console.error(error); // exibe uma mensagem de erro no console se a chamada da API falhar
