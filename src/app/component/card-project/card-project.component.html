@@ -1,33 +1,60 @@
-<mat-card class="mat-card">
-    <mat-card-header>
-        <div>
-            <mat-card-title>{{ project.name }}</mat-card-title>
-            <mat-card-subtitle>{{project.description}}</mat-card-subtitle>
-        </div>
-        <div class="avatar" mat-card-avatar style="background-image: url({{project.owner.avatar_url}});"></div>
+<div class="card" [ngStyle]="styleBorder()">
+    <mat-card class="mat-card">
+        <mat-card-header>
+            <div>
+                <mat-card-title>{{ project.full_name }}</mat-card-title>
+                <mat-card-subtitle>{{project.description}}</mat-card-subtitle>
+            </div>
+            <div class="avatar" mat-card-avatar [ngStyle]="{'background-image': 'url(' +project.owner.avatar_url+')'}">
+            </div>
 
-    </mat-card-header>
-    <mat-card-content>
-        <div>
-            <p>
-                Language: {{project.language}}
-            </p>
-        </div>
-        <p>{{project.languages_url}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-        <div>
-            contribuidor
-        </div>
-        <div>
-            Issues
-        </div>
-        <div>
-            Start
-        </div>
-        <div>
-            Forks
-        </div>
-        <a mat-button href="{{project.html_url}}" target="_blank">Ver</a>
-    </mat-card-actions>
-</mat-card>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <p>
+                    Language:
+                    <mat-chip-listbox aria-label="Dog selection">
+                        <mat-chip *ngFor="let languagem of languagens" [ngStyle]="{
+                            'background-color': languagenCollors[languagem.name], 'color': 'white'
+                        }">
+                            <span [ngStyle]="{'color': ['JavaScript'].includes( languagem.name) ?'black' :'white'}">
+                                {{languagem.name}}
+                            </span>
+
+                        </mat-chip>
+                    </mat-chip-listbox>
+                </p>
+            </div>
+            <!---p>{{project.languages_url}}</p--->
+        </mat-card-content>
+        <mat-card-actions>
+            <!---div>
+            <mat-icon>call_split</mat-icon>
+            <span>
+                Contribuidor: {{project.issues_count}}
+            </span>
+        </div--->
+            <div>
+                <mat-icon>call_split</mat-icon>
+                <span>
+                    Issues: {{project.issues_count}}
+                </span>
+            </div>
+            <div>
+                <mat-icon aria-hidden="true" aria-label="Example home icon"
+                    [ngStyle]="{'color': (project.stargazers_count > 0 ?'yellow':'black' )}"
+                    fontIcon="{{project.stargazers_count > 0?'star':'star_border' }}"></mat-icon>
+                <span>
+                    Start: {{project.stargazers_count}}
+                </span>
+
+            </div>
+            <div>
+                <mat-icon>compare_arrows</mat-icon>
+                <span>Forks: {{project.forks_count}}</span>
+
+            </div>
+            <a mat-stroked-button color="primary" href="{{project.html_url}}" target="_blank">Ver</a>
+        </mat-card-actions>
+    </mat-card>
+</div>

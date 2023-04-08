@@ -1,22 +1,36 @@
-/*
-mat-card {
-    width: 400px;
-    border: 1px solid black;
-    border-bottom: 4px solid black;
+.card {
+    border-radius: 10px;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+    background-clip: padding-box;
+    border-color: transparent;
+    background-color: white;
     margin-bottom: 10px;
-}
-*/
 
-.avatar {
-    background-size: cover;
+    mat-card {
+        width: 500px;
+        border-radius: 10px;
+        box-shadow: none;
+
+        .avatar {
+
+            background-size: cover;
+        }
+
+        mat-card-header,
+        mat-card-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
 }
 
-mat-card-header {
-    display: flex;
-    justify-content: space-between;
+.card:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+    transition: all 0.3s ease-in-out;
 }
 
-mat-card-actions {
-    display: flex;
-    justify-content: space-between;
+mat-chip {
+    color: white;
 }
