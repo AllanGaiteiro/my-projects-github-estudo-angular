@@ -11,9 +11,7 @@ export class ProjectListComponent implements OnInit {
   projects: any[] = [];
   showMore = false;
   searchQuery = '';
-  octokit = new Octokit(
-    //{auth: 'f514a0ba2836d3c6ae1fa637e3e36c2abc267919'} verificar
-  );
+  octokit = new Octokit();
 
   constructor() { }
   ngOnInit() {
