@@ -11,24 +11,23 @@ export class ProjectListComponent implements OnInit {
   projects: any[] = [];
   showMore = false;
   searchQuery = '';
-  octokit = new Octokit();
+  octokit = new Octokit({ auth: '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' });
 
   constructor() { }
   ngOnInit() {
-    // Substitua "seu_nome_de_usuario" abaixo pelo seu nome de usuário do GitHub
+    this.findListProjectForUse();
+  }
 
+  private findListProjectForUse() {
     this.octokit.repos.listForUser({
       username: 'AllanGaiteiro',
-
     }).then(({ data }) => {
       // exibe os dados dos seus projetos do GitHub no console
-      this.allProjects = data.sort((a, b) => b['updated_at'] && a['updated_at'] && (b['updated_at'] > a['updated_at']) ? 1 : -1);
+      this.allProjects = data.filter(p => p.language).sort((a, b) => b['updated_at'] && a['updated_at'] && (b['updated_at'] > a['updated_at']) ? 1 : -1);
       this.projects = this.allProjects.slice(0, 6);
-      console.log(this.projects)
     }).catch(error => {
-      console.error(error); // exibe uma mensagem de erro no console se a chamada da API falhar
+      console.error(error);
     });
-
   }
 
   toggleShowMore() {
